@@ -35,7 +35,6 @@ export class EthereumService {
     }
 
     async getTransaction(txHash: string): Promise<Transaction> {
-        console.time(txHash)
         await this.ensureConnection();
         
         try {
@@ -50,7 +49,6 @@ export class EthereumService {
             if (!receipt) {
                 throw new Error(`Receipt for transaction ${txHash} not found`);
             }
-            console.timeEnd(txHash)
             // Format the transaction data according to the required structure
             return {
                 transactionHash: tx.hash,
